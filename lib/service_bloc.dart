@@ -85,6 +85,23 @@ class ServiceBloc extends Bloc<ServiceEvent, ServiceState> {
       emit(ServiceState(isServiceRunning: false, counter: 0, inputData: '', numbers: []));
     });
 
+    on<SendData>((event, emit) async {
+      print('Sending data to service: ${event.data}');
+      FlutterForegroundTask.sendData({'data': event.data});
+      // Simulate service response
+      // await FlutterForegroundTask.updateService(
+      //   foregroundTaskOptions: const ForegroundTaskOptions(),
+      //   notificationTitle: 'Foreground Service',
+      //   notificationText: 'Received: ${event.data}',
+      // );
+      emit(ServiceState(
+        isServiceRunning: state.isServiceRunning,
+        counter: state.counter,
+        inputData: event.data,
+        numbers: state.numbers,
+      ));
+    });
+    /*
     on<SendData>((event, emit) {
       FlutterForegroundTask.sendData({'data': event.data});
       emit(ServiceState(
@@ -94,6 +111,7 @@ class ServiceBloc extends Bloc<ServiceEvent, ServiceState> {
         numbers: state.numbers,
       ));
     });
+    */
 
     on<UpdateData>((event, emit) {
       emit(ServiceState(

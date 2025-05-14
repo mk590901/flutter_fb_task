@@ -86,8 +86,9 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(height: 10),
                         ElevatedButton(
                           onPressed: () {
-                            final data = _controller.text.trim();
+                            final String data = _controller.text.trim();
                             if (data.isNotEmpty) {
+                              print('Button pressed, sending: $data');
                               context.read<ServiceBloc>().add(SendData(data));
                               _controller.clear(); // Uncomment to clear field
                             }
