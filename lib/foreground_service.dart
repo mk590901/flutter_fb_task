@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'dart:isolate';
+import 'dart:ui';
 import 'package:flutter_foreground_task/flutter_foreground_task.dart';
 import 'dart:math';
 
 // Initialize the foreground service
 Future<void> initializeForegroundService() async {
-  /*await*/ FlutterForegroundTask.init(
+  FlutterForegroundTask.init(
     androidNotificationOptions: AndroidNotificationOptions(
       channelId: 'foreground_service',
       channelName: 'Foreground Service Notification',
@@ -62,6 +63,12 @@ class ServiceTaskHandler extends TaskHandler {
       foregroundTaskOptions: const ForegroundTaskOptions(interval: 1000,),
       notificationTitle: 'Foreground Service',
       notificationText: 'Counter: $counter, Numbers: ${numbers.map((n) => n.toStringAsFixed(2)).join(', ')}',
+      // notificationIcon: NotificationIconData(
+      //   resType: ResourceType.mipmap,
+      //   resPrefix: ResourcePrefix.ic,
+      //   name: 'com.example.flutter_fb_task.HEART_ICON',
+      //   backgroundColor: Color(0xFF202020),
+      // ),
     );
 
     // Send data to app
@@ -100,21 +107,6 @@ class ServiceTaskHandler extends TaskHandler {
       );
     } else {
       print('Invalid data format: $data');
-    }
-  }
-
-  // Fallback to catch any events
-  @override
-  void onEvent(dynamic event) {
-    print('onEvent called with event: $event');
-    if (event is Map && event.containsKey('data')) {
-      final String receivedData = event['data'] as String;
-      print('Service received event data: $receivedData');
-      FlutterForegroundTask.updateService(
-        foregroundTaskOptions: const ForegroundTaskOptions(interval: 1000,),
-        notificationTitle: 'Foreground Service',
-        notificationText: 'Received via onEvent: $receivedData',
-      );
     }
   }
 }

@@ -43,24 +43,5 @@ public class MainActivity extends FlutterActivity {
                 );
             }
         }
-
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-//            if (checkSelfPermission("android.permission.FOREGROUND_SERVICE_DATA_SYNC")
-//                    != PackageManager.PERMISSION_GRANTED) {
-//                ActivityCompat.requestPermissions(
-//                        this,
-//                        new String[]{"android.permission.FOREGROUND_SERVICE_DATA_SYNC"},
-//                        FOREGROUND_PERMISSION_REQUEST_CODE
-//                );
-//            }
-//        }
-
-
-
     }
 }
-
-//import io.flutter.embedding.android.FlutterActivity;
-//
-//public class MainActivity extends FlutterActivity {
-//}

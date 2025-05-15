@@ -9,7 +9,7 @@
     <application
         android:label="flutter_fb_task"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/settings_icon">
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -35,18 +35,20 @@
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <!-- Foreground service for flutter_foreground_task -->
-        <!--
-        <service
-            android:name="dev.fluttercommunity.foregroundtask.FlutterForegroundService"
-            android:enabled="true"
-            android:exported="false"
-            android:foregroundServiceType="dataSync" />
-         -->
         <service
             android:name="com.pravera.flutter_foreground_task.service.ForegroundService"
             android:foregroundServiceType="dataSync|remoteMessaging"
             android:exported="false"
             />
+
+        <!-- Custom notification icon. -->
+<!--        <meta-data-->
+<!--            android:name="com.example.flutter_fb_task.HOME_ICON"-->
+<!--            android:resource="@mipmap/ic_home" />-->
+
+<!--        <meta-data-->
+<!--            android:name="com.example.flutter_fb_task.HEART_ICON"-->
+<!--            android:resource="@mipmap/ic_heart" />-->
 
         <meta-data
             android:name="flutterEmbedding"
